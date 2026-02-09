@@ -1,0 +1,34 @@
+{
+  "name": "jobs-and-notifications-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev":"tsx watch --env-file .env src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leosouza5/jobs-and-notifications-api.git"
+  },
+  "keywords": [],
+  "author": "Leonardo de Souza",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^5.67.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.5"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/leosouza5/jobs-and-notifications-api/issues"
+  },
+  "homepage": "https://github.com/leosouza5/jobs-and-notifications-api#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.2.2"
+  }
+}
