@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "f5f76840-62bc-4f44-9229-c17f6f1b36b2",
+    "name": "Jobs and Notifications API",
+    "description": "Collection para testes dos endpoints de fila de e-mails.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Emails",
+      "item": [
+        {
+          "name": "Enqueue Welcome Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"Leonardo\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emails/welcomeEmail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emails",
+                "welcomeEmail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enqueue Reset Password Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"Leonardo\",\n  \"code\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emails/resetPasswordEmail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emails",
+                "resetPasswordEmail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enqueue Account Locked Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"Leonardo\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emails/accountLockedEmail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emails",
+                "accountLockedEmail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enqueue Daily Summary Report Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"Leonardo\",\n  \"date\": \"2026-02-12\",\n  \"tasksCompleted\": 8,\n  \"tasksPending\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emails/dailySummaryReportEmail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emails",
+                "dailySummaryReportEmail"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+}

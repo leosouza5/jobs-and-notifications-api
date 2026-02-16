@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"tsx watch --env-file .env src/server.ts",
+    "dev": "tsx watch --env-file .env src/server.ts",
+    "worker:emails": "tsx watch  --env-file .env src/workers/emails/emailsWorker.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,9 +16,13 @@
   "author": "Leonardo de Souza",
   "license": "ISC",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.4.0",
     "bullmq": "^5.67.3",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "nodemailer": "^8.0.1",
+    "pg": "^8.18.0",
+    "prisma": "^7.4.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "zod": "^4.3.5"
@@ -29,6 +34,7 @@
   "homepage": "https://github.com/leosouza5/jobs-and-notifications-api#readme",
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/node": "^25.2.2"
+    "@types/node": "^25.2.3",
+    "@types/nodemailer": "^7.0.9"
   }
 }

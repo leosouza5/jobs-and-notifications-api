@@ -1,3 +1,10 @@
+export interface SendEmailDTO {
+  to: string
+  subject: string
+  html: string
+  text?: string
+}
+
 export interface IEmailProvider {
-  sendEmail(to: string, subject: string, body: string): Promise<void>
+  sendEmail(data: SendEmailDTO): Promise<void>
 }

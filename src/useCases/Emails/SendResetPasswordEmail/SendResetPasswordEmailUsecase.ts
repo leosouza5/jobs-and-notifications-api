@@ -2,12 +2,15 @@ import { welcomeTemplate } from "@/templates/welcome";
 import type { IEmailProvider } from "@/providers/IEmailProvider";
 import type { IJobHandler } from "@/workers/IJobHandler";
 import type { EnqueueWelcomeEmailDTO } from "../EnqueueWelcomeEmail/EnqueueWelcomeEmailDTO";
+import type { EnqueueResetPasswordEmailDTO } from "../EnqueueResetPasswordEmail/EnqueueResetPasswordEmailDTO";
+import { resetPasswordTemplate } from "@/templates/resetPassword";
 
-export class SendWelcomeEmailUseCase implements IJobHandler {
+export class SendResetPasswordEmailUsecase implements IJobHandler {
   constructor(private emailProvider: IEmailProvider) {}
 
-  async execute(data: EnqueueWelcomeEmailDTO): Promise<void> {
-    const { subject, html, text } = welcomeTemplate({
+  async execute(data: EnqueueResetPasswordEmailDTO): Promise<void> {
+    const { subject, html, text } = resetPasswordTemplate({
+      code: data.code,
       name: data.name,
     })
 
