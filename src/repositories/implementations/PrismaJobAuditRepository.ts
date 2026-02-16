@@ -18,9 +18,6 @@ export class PrismaJobAuditRepository implements IJobAuditRepository {
   }
 
   async markProcessing(id: string) {
-    const current = await prisma.jobAudit.findUnique({ where: { id } });
-    if (!current) return null;
-
     return prisma.jobAudit.update({
       where: { id },
       data: { status: "PROCESSING" },
@@ -28,9 +25,6 @@ export class PrismaJobAuditRepository implements IJobAuditRepository {
   }
 
   async markCompleted(id: string) {
-    const current = await prisma.jobAudit.findUnique({ where: { id } });
-    if (!current) return null;
-
     return prisma.jobAudit.update({
       where: { id },
       data: {
@@ -39,40 +33,25 @@ export class PrismaJobAuditRepository implements IJobAuditRepository {
     });
   }
 
-  async markFailed(id: string, errorSanitized: string) {
-    const current = await prisma.jobAudit.findUnique({ where: { id } });
-    if (!current) return null;
-
-    const payload = { data: current.payload, errorSanitized }
-
+  async markFailed(id: string) {
     return prisma.jobAudit.update({
       where: { id },
       data: {
         status: "FAILED",
-        payload,
       },
     });
   }
 
-  async markDead(id: string, errorSanitized: string) {
-    const current = await prisma.jobAudit.findUnique({ where: { id } });
-    if (!current) return null;
-
-    const payload = { data: current.payload, errorSanitized }
-
+  async markDead(id: string) {
     return prisma.jobAudit.update({
       where: { id },
       data: {
         status: "DEAD",
-        payload,
       },
     });
   }
 
   async incrementAttempts(id: string, attemptNumber?: number) {
-    const current = await prisma.jobAudit.findUnique({ where: { id } });
-    if (!current) return null;
-
     return prisma.jobAudit.update({
       where: { id },
       data: {

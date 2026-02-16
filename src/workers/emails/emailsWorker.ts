@@ -1,19 +1,18 @@
 import { Worker, type Job } from "bullmq";
 import { makeEmailHandlers } from "./emailHandlersFactory";
 import { redisConnection } from "@/config/redis";
+import { PrismaJobAuditRepository } from "@/repositories/implementations/PrismaJobAuditRepository";
+import { PrismaJobExecutionRepository } from "@/repositories/implementations/PrismaJobExecutionRepository";
+import { EmailJobProcessor } from "./EmailJobProcessor";
 
-const handlers = makeEmailHandlers()
+const handlers = makeEmailHandlers();
+const jobAuditRepo = new PrismaJobAuditRepository();
+const jobExecutionRepo = new PrismaJobExecutionRepository();
+const emailJobProcessor = new EmailJobProcessor(handlers, jobAuditRepo, jobExecutionRepo);
 
 const processor = async (job: Job) => {
-  console.log(`Processing job ${job.id} with data:`, job.data)
-
-  const handler = handlers[job.name]
-  if (!handler) {
-    console.error(`No handler found for job name: ${job.name}`)
-    return
-  }
-  await handler.execute(job.data)
-}
+  await emailJobProcessor.process(job);
+};
 
 console.log("[emails-worker] booting...")
 const emailWorker = new Worker(

@@ -1,11 +1,28 @@
 import type { IQueueProvider } from "@/providers/IQueueProvider";
+import type { Prisma } from "@/generated/client.js";
+import type { IJobAuditRepository } from "@/repositories/IJobAuditRepository";
 import type { EnqueueDailySummaryReportEmailDTO } from "./EnqueueDailySummaryReportEmailDTO";
 
 export class EnqueueDailySummaryReportEmailUseCase {
-  constructor(private queueProvider: IQueueProvider) {}
+  constructor(
+    private queueProvider: IQueueProvider,
+    private jobAuditRepository: IJobAuditRepository,
+  ) {}
 
-  async execute(data: EnqueueDailySummaryReportEmailDTO): Promise<void> {
-    await this.queueProvider.enqueue("emails", "SEND_DAILY_SUMMARY_REPORT_EMAIL", data, {
+  async execute(data: EnqueueDailySummaryReportEmailDTO): Promise<{ jobAuditId: string }> {
+    const queueName = "emails";
+    const jobName = "SEND_DAILY_SUMMARY_REPORT_EMAIL";
+
+    const jobAudit = await this.jobAuditRepository.create({
+      queueName,
+      jobName,
+      payload: data as unknown as Prisma.InputJsonValue,
+    });
+
+    await this.queueProvider.enqueue(queueName, jobName, {
+      ...data,
+      jobAuditId: jobAudit.id,
+    }, {
       backoff: {
         type: "exponential",
         delay: 10_000,
@@ -14,5 +31,7 @@ export class EnqueueDailySummaryReportEmailUseCase {
       removeOnComplete: true,
       removeOnFail: false,
     });
+
+    return { jobAuditId: jobAudit.id };
   }
 }

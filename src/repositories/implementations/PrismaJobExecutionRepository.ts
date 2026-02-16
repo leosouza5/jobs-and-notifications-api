@@ -9,37 +9,32 @@ export class PrismaJobExecutionRepository implements IJobExecutionRepository {
       data: {
         jobAuditId: data.jobAuditId,
         attempt: data.attempt,
+        status: "STARTED",
         startedAt: data.startedAt ?? new Date(),
-      },
-    });
+      } as any,
+    } as any);
   }
 
   async markSuccess(executionId: string, finishedAt?: Date) {
-    const existing = await prisma.jobExecution.findUnique({
-      where: { id: executionId },
-    });
-    if (!existing) return null;
-
     return prisma.jobExecution.update({
       where: { id: executionId },
       data: {
+        status: "SUCCESS",
+        errorSanitized: null,
         finishedAt: finishedAt ?? new Date(),
-      },
-    });
+      } as any,
+    } as any);
   }
 
-  async markFailed(executionId: string, finishedAt?: Date) {
-    const existing = await prisma.jobExecution.findUnique({
-      where: { id: executionId },
-    });
-    if (!existing) return null;
-
+  async markFailed(executionId: string, errorSanitized: string, finishedAt?: Date) {
     return prisma.jobExecution.update({
       where: { id: executionId },
       data: {
+        status: "FAILED",
+        errorSanitized,
         finishedAt: finishedAt ?? new Date(),
-      },
-    });
+      } as any,
+    } as any);
   }
 
   async findLastByJobAuditId(jobAuditId: string) {
