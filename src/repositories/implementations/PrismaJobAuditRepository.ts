@@ -1,7 +1,7 @@
-import { prisma } from "@/config/prismaClient";
+import { prisma } from "@/config/prismaClient.js";
 import type {
   IJobAuditRepository,
-} from "../../repositories/IJobAuditRepository";
+} from "../../repositories/IJobAuditRepository.js";
 import type { Prisma } from "@/generated/client.js";
 
 export class PrismaJobAuditRepository implements IJobAuditRepository {
@@ -57,6 +57,12 @@ export class PrismaJobAuditRepository implements IJobAuditRepository {
       data: {
         attempts: typeof attemptNumber === "number" ? attemptNumber : { increment: 1 },
       },
+    });
+  }
+
+  async listAll() {
+    return prisma.jobAudit.findMany({
+      orderBy: { createdAt: "desc" },
     });
   }
 

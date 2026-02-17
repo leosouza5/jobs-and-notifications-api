@@ -1,7 +1,7 @@
-import type { IEmailProvider, SendEmailDTO } from "../IEmailProvider";
+import type { IEmailProvider, SendEmailDTO } from "../IEmailProvider.js";
 import nodemailer from "nodemailer";
-import { emailConfig } from "@/config/email";
-import { AppError } from "@/utils/AppError";
+import { emailConfig } from "@/config/email.js";
+import { AppError } from "@/utils/AppError.js";
 
 export class NodeMailerEmailProvider implements IEmailProvider {
   private mailer = nodemailer.createTransport({

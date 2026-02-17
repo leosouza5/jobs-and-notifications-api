@@ -1,8 +1,8 @@
 import type { Job } from "bullmq";
-import type { IJobHandler } from "@/workers/IJobHandler";
-import type { IJobAuditRepository } from "@/repositories/IJobAuditRepository";
-import type { IJobExecutionRepository } from "@/repositories/IJobExecutionRepository";
-import { sanitizeError } from "@/utils/sanitizeError";
+import type { IJobHandler } from "@/workers/IJobHandler.js";
+import type { IJobAuditRepository } from "@/repositories/IJobAuditRepository.js";
+import type { IJobExecutionRepository } from "@/repositories/IJobExecutionRepository.js";
+import { sanitizeError } from "@/utils/sanitizeError.js";
 
 type JobDataWithAuditId = {
   jobAuditId?: string;

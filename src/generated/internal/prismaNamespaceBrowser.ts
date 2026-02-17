@@ -89,6 +89,8 @@ export const JobExecutionScalarFieldEnum = {
   id: 'id',
   jobAuditId: 'jobAuditId',
   attempt: 'attempt',
+  status: 'status',
+  errorSanitized: 'errorSanitized',
   startedAt: 'startedAt',
   finishedAt: 'finishedAt'
 } as const

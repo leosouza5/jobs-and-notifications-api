@@ -1,9 +1,9 @@
-import { SendWelcomeEmailUseCase } from "@/useCases/Emails/SendWelcomeEmail/SendWelcomeEmailUsecase";
-import { SendResetPasswordEmailUsecase } from "@/useCases/Emails/SendResetPasswordEmail/SendResetPasswordEmailUsecase";
-import { SendDailySummaryReportEmailUsecase } from "@/useCases/Emails/SendDailySummaryReportEmail/SendDailySummaryReportEmailUsecase";
-import { SendAccountLockedEmailUsecase } from "@/useCases/Emails/SendAccountLockedEmail/SendAccountLockedEmailUsecase";
-import type { IJobHandler } from "../IJobHandler";
-import { NodeMailerEmailProvider } from "@/providers/implementations/NodeMailerEmailProvider";
+import { SendWelcomeEmailUseCase } from "@/useCases/Emails/SendWelcomeEmail/SendWelcomeEmailUsecase.js";
+import { SendResetPasswordEmailUsecase } from "@/useCases/Emails/SendResetPasswordEmail/SendResetPasswordEmailUsecase.js";
+import { SendDailySummaryReportEmailUsecase } from "@/useCases/Emails/SendDailySummaryReportEmail/SendDailySummaryReportEmailUsecase.js";
+import { SendAccountLockedEmailUsecase } from "@/useCases/Emails/SendAccountLockedEmail/SendAccountLockedEmailUsecase.js";
+import type { IJobHandler } from "../IJobHandler.js";
+import { NodeMailerEmailProvider } from "@/providers/implementations/NodeMailerEmailProvider.js";
 
 export function makeEmailHandlers():Record<string, IJobHandler>{
   const emailProvider = new NodeMailerEmailProvider()

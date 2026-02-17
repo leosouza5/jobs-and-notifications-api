@@ -1,7 +1,7 @@
-import { prisma } from "@/config/prismaClient";
+import { prisma } from "@/config/prismaClient.js";
 import type {
   IJobExecutionRepository,
-} from "../../repositories/IJobExecutionRepository";
+} from "../../repositories/IJobExecutionRepository.js";
 
 export class PrismaJobExecutionRepository implements IJobExecutionRepository {
   async startExecution(data: { jobAuditId: string; attempt: number; startedAt?: Date }) {

@@ -1,5 +1,5 @@
 import { Queue, type ConnectionOptions, type JobsOptions } from "bullmq";
-import type { IQueueProvider } from "../IQueueProvider";
+import type { IQueueProvider } from "../IQueueProvider.js";
 
 export class BullMQQueueProvider implements IQueueProvider {
   private queues = new Map<string, Queue>()

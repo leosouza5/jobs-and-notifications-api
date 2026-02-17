@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import type { EnqueueResetPasswordEmailUseCase,  } from "./EnqueueResetPasswordEmailUseCase";
-import { makeEnqueueResetPasswordEmailUseCase,  } from "./EnqueueResetPasswordEmailFactory";
-import { enqueueResetPasswordEmailSchema } from "@/schemas/enqueueResetPasswordEmailSchema";
+import type { EnqueueResetPasswordEmailUseCase,  } from "./EnqueueResetPasswordEmailUseCase.js";
+import { makeEnqueueResetPasswordEmailUseCase,  } from "./EnqueueResetPasswordEmailFactory.js";
+import { enqueueResetPasswordEmailSchema } from "@/schemas/enqueueResetPasswordEmailSchema.js";
 
 
 export class EnqueueResetPasswordEmailController {

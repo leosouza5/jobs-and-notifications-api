@@ -1,9 +1,9 @@
-import { welcomeTemplate } from "@/templates/welcome";
-import type { IEmailProvider } from "@/providers/IEmailProvider";
-import type { IJobHandler } from "@/workers/IJobHandler";
-import type { EnqueueWelcomeEmailDTO } from "../EnqueueWelcomeEmail/EnqueueWelcomeEmailDTO";
-import type { EnqueueResetPasswordEmailDTO } from "../EnqueueResetPasswordEmail/EnqueueResetPasswordEmailDTO";
-import { resetPasswordTemplate } from "@/templates/resetPassword";
+import { welcomeTemplate } from "@/templates/welcome.js";
+import type { IEmailProvider } from "@/providers/IEmailProvider.js";
+import type { IJobHandler } from "@/workers/IJobHandler.js";
+import type { EnqueueWelcomeEmailDTO } from "../EnqueueWelcomeEmail/EnqueueWelcomeEmailDTO.js";
+import type { EnqueueResetPasswordEmailDTO } from "../EnqueueResetPasswordEmail/EnqueueResetPasswordEmailDTO.js";
+import { resetPasswordTemplate } from "@/templates/resetPassword.js";
 
 export class SendResetPasswordEmailUsecase implements IJobHandler {
   constructor(private emailProvider: IEmailProvider) {}

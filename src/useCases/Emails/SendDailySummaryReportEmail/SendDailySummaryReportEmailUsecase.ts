@@ -1,7 +1,7 @@
-import type { IEmailProvider } from "@/providers/IEmailProvider";
-import { dailySummaryTemplate } from "@/templates/dailySummary";
-import type { IJobHandler } from "@/workers/IJobHandler";
-import type { EnqueueDailySummaryReportEmailDTO } from "../EnqueueDailySummaryReportEmail/EnqueueDailySummaryReportEmailDTO";
+import type { IEmailProvider } from "@/providers/IEmailProvider.js";
+import { dailySummaryTemplate } from "@/templates/dailySummary.js";
+import type { IJobHandler } from "@/workers/IJobHandler.js";
+import type { EnqueueDailySummaryReportEmailDTO } from "../EnqueueDailySummaryReportEmail/EnqueueDailySummaryReportEmailDTO.js";
 
 export class SendDailySummaryReportEmailUsecase implements IJobHandler {
   constructor(private emailProvider: IEmailProvider) {}

@@ -236,6 +236,7 @@ export type JobAuditWhereInput = {
   attempts?: Prisma.IntFilter<"JobAudit"> | number
   createdAt?: Prisma.DateTimeFilter<"JobAudit"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"JobAudit"> | Date | string
+  executions?: Prisma.JobExecutionListRelationFilter
 }
 
 export type JobAuditOrderByWithRelationInput = {
@@ -247,6 +248,7 @@ export type JobAuditOrderByWithRelationInput = {
   attempts?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  executions?: Prisma.JobExecutionOrderByRelationAggregateInput
 }
 
 export type JobAuditWhereUniqueInput = Prisma.AtLeast<{
@@ -261,6 +263,7 @@ export type JobAuditWhereUniqueInput = Prisma.AtLeast<{
   attempts?: Prisma.IntFilter<"JobAudit"> | number
   createdAt?: Prisma.DateTimeFilter<"JobAudit"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"JobAudit"> | Date | string
+  executions?: Prisma.JobExecutionListRelationFilter
 }, "id">
 
 export type JobAuditOrderByWithAggregationInput = {
@@ -302,6 +305,7 @@ export type JobAuditCreateInput = {
   attempts: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  executions?: Prisma.JobExecutionCreateNestedManyWithoutJobAuditInput
 }
 
 export type JobAuditUncheckedCreateInput = {
@@ -313,6 +317,7 @@ export type JobAuditUncheckedCreateInput = {
   attempts: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  executions?: Prisma.JobExecutionUncheckedCreateNestedManyWithoutJobAuditInput
 }
 
 export type JobAuditUpdateInput = {
@@ -324,6 +329,7 @@ export type JobAuditUpdateInput = {
   attempts?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  executions?: Prisma.JobExecutionUpdateManyWithoutJobAuditNestedInput
 }
 
 export type JobAuditUncheckedUpdateInput = {
@@ -335,6 +341,7 @@ export type JobAuditUncheckedUpdateInput = {
   attempts?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  executions?: Prisma.JobExecutionUncheckedUpdateManyWithoutJobAuditNestedInput
 }
 
 export type JobAuditCreateManyInput = {
@@ -409,6 +416,11 @@ export type JobAuditSumOrderByAggregateInput = {
   attempts?: Prisma.SortOrder
 }
 
+export type JobAuditScalarRelationFilter = {
+  is?: Prisma.JobAuditWhereInput
+  isNot?: Prisma.JobAuditWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -429,6 +441,109 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type JobAuditCreateNestedOneWithoutExecutionsInput = {
+  create?: Prisma.XOR<Prisma.JobAuditCreateWithoutExecutionsInput, Prisma.JobAuditUncheckedCreateWithoutExecutionsInput>
+  connectOrCreate?: Prisma.JobAuditCreateOrConnectWithoutExecutionsInput
+  connect?: Prisma.JobAuditWhereUniqueInput
+}
+
+export type JobAuditUpdateOneRequiredWithoutExecutionsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobAuditCreateWithoutExecutionsInput, Prisma.JobAuditUncheckedCreateWithoutExecutionsInput>
+  connectOrCreate?: Prisma.JobAuditCreateOrConnectWithoutExecutionsInput
+  upsert?: Prisma.JobAuditUpsertWithoutExecutionsInput
+  connect?: Prisma.JobAuditWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobAuditUpdateToOneWithWhereWithoutExecutionsInput, Prisma.JobAuditUpdateWithoutExecutionsInput>, Prisma.JobAuditUncheckedUpdateWithoutExecutionsInput>
+}
+
+export type JobAuditCreateWithoutExecutionsInput = {
+  id?: string
+  queueName: string
+  jobName: string
+  payload: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status: $Enums.JobStatus
+  attempts: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type JobAuditUncheckedCreateWithoutExecutionsInput = {
+  id?: string
+  queueName: string
+  jobName: string
+  payload: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status: $Enums.JobStatus
+  attempts: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type JobAuditCreateOrConnectWithoutExecutionsInput = {
+  where: Prisma.JobAuditWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobAuditCreateWithoutExecutionsInput, Prisma.JobAuditUncheckedCreateWithoutExecutionsInput>
+}
+
+export type JobAuditUpsertWithoutExecutionsInput = {
+  update: Prisma.XOR<Prisma.JobAuditUpdateWithoutExecutionsInput, Prisma.JobAuditUncheckedUpdateWithoutExecutionsInput>
+  create: Prisma.XOR<Prisma.JobAuditCreateWithoutExecutionsInput, Prisma.JobAuditUncheckedCreateWithoutExecutionsInput>
+  where?: Prisma.JobAuditWhereInput
+}
+
+export type JobAuditUpdateToOneWithWhereWithoutExecutionsInput = {
+  where?: Prisma.JobAuditWhereInput
+  data: Prisma.XOR<Prisma.JobAuditUpdateWithoutExecutionsInput, Prisma.JobAuditUncheckedUpdateWithoutExecutionsInput>
+}
+
+export type JobAuditUpdateWithoutExecutionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  queueName?: Prisma.StringFieldUpdateOperationsInput | string
+  jobName?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type JobAuditUncheckedUpdateWithoutExecutionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  queueName?: Prisma.StringFieldUpdateOperationsInput | string
+  jobName?: Prisma.StringFieldUpdateOperationsInput | string
+  payload?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type JobAuditCountOutputType
+ */
+
+export type JobAuditCountOutputType = {
+  executions: number
+}
+
+export type JobAuditCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  executions?: boolean | JobAuditCountOutputTypeCountExecutionsArgs
+}
+
+/**
+ * JobAuditCountOutputType without action
+ */
+export type JobAuditCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobAuditCountOutputType
+   */
+  select?: Prisma.JobAuditCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * JobAuditCountOutputType without action
+ */
+export type JobAuditCountOutputTypeCountExecutionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobExecutionWhereInput
+}
 
 
 export type JobAuditSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -440,6 +555,8 @@ export type JobAuditSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   attempts?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  executions?: boolean | Prisma.JobAudit$executionsArgs<ExtArgs>
+  _count?: boolean | Prisma.JobAuditCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobAudit"]>
 
 export type JobAuditSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -476,10 +593,18 @@ export type JobAuditSelectScalar = {
 }
 
 export type JobAuditOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "queueName" | "jobName" | "payload" | "status" | "attempts" | "createdAt" | "updatedAt", ExtArgs["result"]["jobAudit"]>
+export type JobAuditInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  executions?: boolean | Prisma.JobAudit$executionsArgs<ExtArgs>
+  _count?: boolean | Prisma.JobAuditCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type JobAuditIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type JobAuditIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $JobAuditPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "JobAudit"
-  objects: {}
+  objects: {
+    executions: Prisma.$JobExecutionPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     queueName: string
@@ -883,6 +1008,7 @@ readonly fields: JobAuditFieldRefs;
  */
 export interface Prisma__JobAuditClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  executions<T extends Prisma.JobAudit$executionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobAudit$executionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobExecutionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -937,6 +1063,10 @@ export type JobAuditFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * Filter, which JobAudit to fetch.
    */
   where: Prisma.JobAuditWhereUniqueInput
@@ -955,6 +1085,10 @@ export type JobAuditFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * Filter, which JobAudit to fetch.
    */
   where: Prisma.JobAuditWhereUniqueInput
@@ -972,6 +1106,10 @@ export type JobAuditFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the JobAudit
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
   /**
    * Filter, which JobAudit to fetch.
    */
@@ -1021,6 +1159,10 @@ export type JobAuditFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * Filter, which JobAudit to fetch.
    */
   where?: Prisma.JobAuditWhereInput
@@ -1069,6 +1211,10 @@ export type JobAuditFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * Filter, which JobAudits to fetch.
    */
   where?: Prisma.JobAuditWhereInput
@@ -1111,6 +1257,10 @@ export type JobAuditCreateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the JobAudit
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
   /**
    * The data needed to create a JobAudit.
    */
@@ -1159,6 +1309,10 @@ export type JobAuditUpdateArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the JobAudit
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
   /**
    * The data needed to update a JobAudit.
    */
@@ -1226,6 +1380,10 @@ export type JobAuditUpsertArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * The filter to search for the JobAudit to update in case it exists.
    */
   where: Prisma.JobAuditWhereUniqueInput
@@ -1252,6 +1410,10 @@ export type JobAuditDeleteArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
+  /**
    * Filter which JobAudit to delete.
    */
   where: Prisma.JobAuditWhereUniqueInput
@@ -1272,6 +1434,30 @@ export type JobAuditDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * JobAudit.executions
+ */
+export type JobAudit$executionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobExecution
+   */
+  select?: Prisma.JobExecutionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JobExecution
+   */
+  omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  where?: Prisma.JobExecutionWhereInput
+  orderBy?: Prisma.JobExecutionOrderByWithRelationInput | Prisma.JobExecutionOrderByWithRelationInput[]
+  cursor?: Prisma.JobExecutionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobExecutionScalarFieldEnum | Prisma.JobExecutionScalarFieldEnum[]
+}
+
+/**
  * JobAudit without action
  */
 export type JobAuditDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1283,4 +1469,8 @@ export type JobAuditDefaultArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the JobAudit
    */
   omit?: Prisma.JobAuditOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobAuditInclude<ExtArgs> | null
 }

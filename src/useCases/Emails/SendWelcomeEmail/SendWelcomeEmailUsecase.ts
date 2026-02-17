@@ -1,7 +1,7 @@
-import { welcomeTemplate } from "@/templates/welcome";
-import type { IEmailProvider } from "@/providers/IEmailProvider";
-import type { IJobHandler } from "@/workers/IJobHandler";
-import type { EnqueueWelcomeEmailDTO } from "../EnqueueWelcomeEmail/EnqueueWelcomeEmailDTO";
+import { welcomeTemplate } from "@/templates/welcome.js";
+import type { IEmailProvider } from "@/providers/IEmailProvider.js";
+import type { IJobHandler } from "@/workers/IJobHandler.js";
+import type { EnqueueWelcomeEmailDTO } from "../EnqueueWelcomeEmail/EnqueueWelcomeEmailDTO.js";
 
 export class SendWelcomeEmailUseCase implements IJobHandler {
   constructor(private emailProvider: IEmailProvider) {}

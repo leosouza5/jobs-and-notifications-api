@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import type { EnqueueWelcomeEmailUseCase } from "./EnqueueWelcomeEmailUseCase";
-import { enqueueWelcomeEmailSchema } from "@/schemas/enqueueWelcomeEmailSchema";
-import { makeEnqueueWelcomeEmailUseCase } from "./EnqueueWelcomeEmailFactory";
+import type { EnqueueWelcomeEmailUseCase } from "./EnqueueWelcomeEmailUseCase.js";
+import { enqueueWelcomeEmailSchema } from "@/schemas/enqueueWelcomeEmailSchema.js";
+import { makeEnqueueWelcomeEmailUseCase } from "./EnqueueWelcomeEmailFactory.js";
 
 
 export class EnqueueWelcomeEmailController {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { enqueueAccountLockedEmailSchema } from "@/schemas/enqueueAccountLockedEmailSchema";
-import type { EnqueueAccountLockedEmailUseCase } from "./EnqueueAccountLockedEmailUseCase";
-import { makeEnqueueAccountLockedEmailUseCase } from "./EnqueueAccountLockedEmailFactory";
+import { enqueueAccountLockedEmailSchema } from "@/schemas/enqueueAccountLockedEmailSchema.js";
+import type { EnqueueAccountLockedEmailUseCase } from "./EnqueueAccountLockedEmailUseCase.js";
+import { makeEnqueueAccountLockedEmailUseCase } from "./EnqueueAccountLockedEmailFactory.js";
 
 export class EnqueueAccountLockedEmailController {
   private enqueueAccountLockedEmailUseCase: EnqueueAccountLockedEmailUseCase;

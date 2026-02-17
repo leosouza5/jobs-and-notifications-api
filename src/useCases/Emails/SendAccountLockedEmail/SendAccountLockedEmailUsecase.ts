@@ -1,7 +1,7 @@
-import type { IEmailProvider } from "@/providers/IEmailProvider";
-import { accountLockedTemplate } from "@/templates/accountLocked";
-import type { IJobHandler } from "@/workers/IJobHandler";
-import type { EnqueueAccountLockedEmailDTO } from "../EnqueueAccountLockedEmail/EnqueueAccountLockedEmailDTO";
+import type { IEmailProvider } from "@/providers/IEmailProvider.js";
+import { accountLockedTemplate } from "@/templates/accountLocked.js";
+import type { IJobHandler } from "@/workers/IJobHandler.js";
+import type { EnqueueAccountLockedEmailDTO } from "../EnqueueAccountLockedEmail/EnqueueAccountLockedEmailDTO.js";
 
 export class SendAccountLockedEmailUsecase implements IJobHandler {
   constructor(private emailProvider: IEmailProvider) {}

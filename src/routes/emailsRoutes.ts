@@ -1,7 +1,7 @@
-import { EnqueueWelcomeEmailController } from "@/useCases/Emails/EnqueueWelcomeEmail/EnqueueWelcomeEmailController";
-import { EnqueueDailySummaryReportEmailController } from "@/useCases/Emails/EnqueueDailySummaryReportEmail/EnqueueDailySummaryReportEmailController";
-import { EnqueueAccountLockedEmailController } from "@/useCases/Emails/EnqueueAccountLockedEmail/EnqueueAccountLockedEmailController";
-import { EnqueueResetPasswordEmailController } from "@/useCases/Emails/EnqueueResetPasswordEmail/EnqueueResetPasswordEmailController";
+import { EnqueueWelcomeEmailController } from "@/useCases/Emails/EnqueueWelcomeEmail/EnqueueWelcomeEmailController.js";
+import { EnqueueDailySummaryReportEmailController } from "@/useCases/Emails/EnqueueDailySummaryReportEmail/EnqueueDailySummaryReportEmailController.js";
+import { EnqueueAccountLockedEmailController } from "@/useCases/Emails/EnqueueAccountLockedEmail/EnqueueAccountLockedEmailController.js";
+import { EnqueueResetPasswordEmailController } from "@/useCases/Emails/EnqueueResetPasswordEmail/EnqueueResetPasswordEmailController.js";
 import { Router } from "express";
 
 const emailsRoutes = Router();

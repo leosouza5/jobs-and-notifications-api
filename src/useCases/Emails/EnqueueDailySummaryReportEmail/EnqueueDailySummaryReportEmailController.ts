@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { enqueueDailySummaryReportEmailSchema } from "@/schemas/enqueueDailySummaryReportEmailSchema";
-import type { EnqueueDailySummaryReportEmailUseCase } from "./EnqueueDailySummaryReportEmailUseCase";
-import { makeEnqueueDailySummaryReportEmailUseCase } from "./EnqueueDailySummaryReportEmailFactory";
+import { enqueueDailySummaryReportEmailSchema } from "@/schemas/enqueueDailySummaryReportEmailSchema.js";
+import type { EnqueueDailySummaryReportEmailUseCase } from "./EnqueueDailySummaryReportEmailUseCase.js";
+import { makeEnqueueDailySummaryReportEmailUseCase } from "./EnqueueDailySummaryReportEmailFactory.js";
 
 export class EnqueueDailySummaryReportEmailController {
   private enqueueDailySummaryReportEmailUseCase: EnqueueDailySummaryReportEmailUseCase;

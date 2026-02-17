@@ -1,9 +1,9 @@
 import { Worker, type Job } from "bullmq";
-import { makeEmailHandlers } from "./emailHandlersFactory";
-import { redisConnection } from "@/config/redis";
-import { PrismaJobAuditRepository } from "@/repositories/implementations/PrismaJobAuditRepository";
-import { PrismaJobExecutionRepository } from "@/repositories/implementations/PrismaJobExecutionRepository";
-import { EmailJobProcessor } from "./EmailJobProcessor";
+import { makeEmailHandlers } from "./emailHandlersFactory.js";
+import { redisConnection } from "@/config/redis.js";
+import { PrismaJobAuditRepository } from "@/repositories/implementations/PrismaJobAuditRepository.js";
+import { PrismaJobExecutionRepository } from "@/repositories/implementations/PrismaJobExecutionRepository.js";
+import { EmailJobProcessor } from "./EmailJobProcessor.js";
 
 const handlers = makeEmailHandlers();
 const jobAuditRepo = new PrismaJobAuditRepository();

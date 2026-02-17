@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch --env-file .env src/server.ts",
     "worker:emails": "tsx watch  --env-file .env src/workers/emails/emailsWorker.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -28,12 +28,13 @@
     "typescript": "^5.9.3",
     "zod": "^4.3.5"
   },
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/leosouza5/jobs-and-notifications-api/issues"
   },
   "homepage": "https://github.com/leosouza5/jobs-and-notifications-api#readme",
   "devDependencies": {
+    "tsc-alias": "^1.8.10",
     "@types/express": "^5.0.6",
     "@types/node": "^25.2.3",
     "@types/nodemailer": "^7.0.9"

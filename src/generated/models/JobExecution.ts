@@ -38,6 +38,8 @@ export type JobExecutionMinAggregateOutputType = {
   id: string | null
   jobAuditId: string | null
   attempt: number | null
+  status: $Enums.JobExecutionStatus | null
+  errorSanitized: string | null
   startedAt: Date | null
   finishedAt: Date | null
 }
@@ -46,6 +48,8 @@ export type JobExecutionMaxAggregateOutputType = {
   id: string | null
   jobAuditId: string | null
   attempt: number | null
+  status: $Enums.JobExecutionStatus | null
+  errorSanitized: string | null
   startedAt: Date | null
   finishedAt: Date | null
 }
@@ -54,6 +58,8 @@ export type JobExecutionCountAggregateOutputType = {
   id: number
   jobAuditId: number
   attempt: number
+  status: number
+  errorSanitized: number
   startedAt: number
   finishedAt: number
   _all: number
@@ -72,6 +78,8 @@ export type JobExecutionMinAggregateInputType = {
   id?: true
   jobAuditId?: true
   attempt?: true
+  status?: true
+  errorSanitized?: true
   startedAt?: true
   finishedAt?: true
 }
@@ -80,6 +88,8 @@ export type JobExecutionMaxAggregateInputType = {
   id?: true
   jobAuditId?: true
   attempt?: true
+  status?: true
+  errorSanitized?: true
   startedAt?: true
   finishedAt?: true
 }
@@ -88,6 +98,8 @@ export type JobExecutionCountAggregateInputType = {
   id?: true
   jobAuditId?: true
   attempt?: true
+  status?: true
+  errorSanitized?: true
   startedAt?: true
   finishedAt?: true
   _all?: true
@@ -183,6 +195,8 @@ export type JobExecutionGroupByOutputType = {
   id: string
   jobAuditId: string
   attempt: number
+  status: $Enums.JobExecutionStatus
+  errorSanitized: string | null
   startedAt: Date
   finishedAt: Date | null
   _count: JobExecutionCountAggregateOutputType | null
@@ -214,16 +228,22 @@ export type JobExecutionWhereInput = {
   id?: Prisma.StringFilter<"JobExecution"> | string
   jobAuditId?: Prisma.StringFilter<"JobExecution"> | string
   attempt?: Prisma.IntFilter<"JobExecution"> | number
+  status?: Prisma.EnumJobExecutionStatusFilter<"JobExecution"> | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.StringNullableFilter<"JobExecution"> | string | null
   startedAt?: Prisma.DateTimeFilter<"JobExecution"> | Date | string
   finishedAt?: Prisma.DateTimeNullableFilter<"JobExecution"> | Date | string | null
+  jobAudit?: Prisma.XOR<Prisma.JobAuditScalarRelationFilter, Prisma.JobAuditWhereInput>
 }
 
 export type JobExecutionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   jobAuditId?: Prisma.SortOrder
   attempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  errorSanitized?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobAudit?: Prisma.JobAuditOrderByWithRelationInput
 }
 
 export type JobExecutionWhereUniqueInput = Prisma.AtLeast<{
@@ -233,14 +253,19 @@ export type JobExecutionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.JobExecutionWhereInput | Prisma.JobExecutionWhereInput[]
   jobAuditId?: Prisma.StringFilter<"JobExecution"> | string
   attempt?: Prisma.IntFilter<"JobExecution"> | number
+  status?: Prisma.EnumJobExecutionStatusFilter<"JobExecution"> | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.StringNullableFilter<"JobExecution"> | string | null
   startedAt?: Prisma.DateTimeFilter<"JobExecution"> | Date | string
   finishedAt?: Prisma.DateTimeNullableFilter<"JobExecution"> | Date | string | null
+  jobAudit?: Prisma.XOR<Prisma.JobAuditScalarRelationFilter, Prisma.JobAuditWhereInput>
 }, "id">
 
 export type JobExecutionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   jobAuditId?: Prisma.SortOrder
   attempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  errorSanitized?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.JobExecutionCountOrderByAggregateInput
@@ -257,38 +282,48 @@ export type JobExecutionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"JobExecution"> | string
   jobAuditId?: Prisma.StringWithAggregatesFilter<"JobExecution"> | string
   attempt?: Prisma.IntWithAggregatesFilter<"JobExecution"> | number
+  status?: Prisma.EnumJobExecutionStatusWithAggregatesFilter<"JobExecution"> | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.StringNullableWithAggregatesFilter<"JobExecution"> | string | null
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"JobExecution"> | Date | string
   finishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobExecution"> | Date | string | null
 }
 
 export type JobExecutionCreateInput = {
   id?: string
-  jobAuditId: string
   attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
   startedAt?: Date | string
   finishedAt?: Date | string | null
+  jobAudit: Prisma.JobAuditCreateNestedOneWithoutExecutionsInput
 }
 
 export type JobExecutionUncheckedCreateInput = {
   id?: string
   jobAuditId: string
   attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
   startedAt?: Date | string
   finishedAt?: Date | string | null
 }
 
 export type JobExecutionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  jobAuditId?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobAudit?: Prisma.JobAuditUpdateOneRequiredWithoutExecutionsNestedInput
 }
 
 export type JobExecutionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobAuditId?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -297,14 +332,17 @@ export type JobExecutionCreateManyInput = {
   id?: string
   jobAuditId: string
   attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
   startedAt?: Date | string
   finishedAt?: Date | string | null
 }
 
 export type JobExecutionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  jobAuditId?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -313,14 +351,28 @@ export type JobExecutionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobAuditId?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type JobExecutionListRelationFilter = {
+  every?: Prisma.JobExecutionWhereInput
+  some?: Prisma.JobExecutionWhereInput
+  none?: Prisma.JobExecutionWhereInput
+}
+
+export type JobExecutionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type JobExecutionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobAuditId?: Prisma.SortOrder
   attempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  errorSanitized?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
@@ -333,6 +385,8 @@ export type JobExecutionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobAuditId?: Prisma.SortOrder
   attempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  errorSanitized?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
@@ -341,6 +395,8 @@ export type JobExecutionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobAuditId?: Prisma.SortOrder
   attempt?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  errorSanitized?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
@@ -349,8 +405,151 @@ export type JobExecutionSumOrderByAggregateInput = {
   attempt?: Prisma.SortOrder
 }
 
+export type JobExecutionCreateNestedManyWithoutJobAuditInput = {
+  create?: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput> | Prisma.JobExecutionCreateWithoutJobAuditInput[] | Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput[]
+  connectOrCreate?: Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput | Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput[]
+  createMany?: Prisma.JobExecutionCreateManyJobAuditInputEnvelope
+  connect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+}
+
+export type JobExecutionUncheckedCreateNestedManyWithoutJobAuditInput = {
+  create?: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput> | Prisma.JobExecutionCreateWithoutJobAuditInput[] | Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput[]
+  connectOrCreate?: Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput | Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput[]
+  createMany?: Prisma.JobExecutionCreateManyJobAuditInputEnvelope
+  connect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+}
+
+export type JobExecutionUpdateManyWithoutJobAuditNestedInput = {
+  create?: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput> | Prisma.JobExecutionCreateWithoutJobAuditInput[] | Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput[]
+  connectOrCreate?: Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput | Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput[]
+  upsert?: Prisma.JobExecutionUpsertWithWhereUniqueWithoutJobAuditInput | Prisma.JobExecutionUpsertWithWhereUniqueWithoutJobAuditInput[]
+  createMany?: Prisma.JobExecutionCreateManyJobAuditInputEnvelope
+  set?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  disconnect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  delete?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  connect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  update?: Prisma.JobExecutionUpdateWithWhereUniqueWithoutJobAuditInput | Prisma.JobExecutionUpdateWithWhereUniqueWithoutJobAuditInput[]
+  updateMany?: Prisma.JobExecutionUpdateManyWithWhereWithoutJobAuditInput | Prisma.JobExecutionUpdateManyWithWhereWithoutJobAuditInput[]
+  deleteMany?: Prisma.JobExecutionScalarWhereInput | Prisma.JobExecutionScalarWhereInput[]
+}
+
+export type JobExecutionUncheckedUpdateManyWithoutJobAuditNestedInput = {
+  create?: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput> | Prisma.JobExecutionCreateWithoutJobAuditInput[] | Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput[]
+  connectOrCreate?: Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput | Prisma.JobExecutionCreateOrConnectWithoutJobAuditInput[]
+  upsert?: Prisma.JobExecutionUpsertWithWhereUniqueWithoutJobAuditInput | Prisma.JobExecutionUpsertWithWhereUniqueWithoutJobAuditInput[]
+  createMany?: Prisma.JobExecutionCreateManyJobAuditInputEnvelope
+  set?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  disconnect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  delete?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  connect?: Prisma.JobExecutionWhereUniqueInput | Prisma.JobExecutionWhereUniqueInput[]
+  update?: Prisma.JobExecutionUpdateWithWhereUniqueWithoutJobAuditInput | Prisma.JobExecutionUpdateWithWhereUniqueWithoutJobAuditInput[]
+  updateMany?: Prisma.JobExecutionUpdateManyWithWhereWithoutJobAuditInput | Prisma.JobExecutionUpdateManyWithWhereWithoutJobAuditInput[]
+  deleteMany?: Prisma.JobExecutionScalarWhereInput | Prisma.JobExecutionScalarWhereInput[]
+}
+
+export type EnumJobExecutionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.JobExecutionStatus
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type JobExecutionCreateWithoutJobAuditInput = {
+  id?: string
+  attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
+  startedAt?: Date | string
+  finishedAt?: Date | string | null
+}
+
+export type JobExecutionUncheckedCreateWithoutJobAuditInput = {
+  id?: string
+  attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
+  startedAt?: Date | string
+  finishedAt?: Date | string | null
+}
+
+export type JobExecutionCreateOrConnectWithoutJobAuditInput = {
+  where: Prisma.JobExecutionWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput>
+}
+
+export type JobExecutionCreateManyJobAuditInputEnvelope = {
+  data: Prisma.JobExecutionCreateManyJobAuditInput | Prisma.JobExecutionCreateManyJobAuditInput[]
+  skipDuplicates?: boolean
+}
+
+export type JobExecutionUpsertWithWhereUniqueWithoutJobAuditInput = {
+  where: Prisma.JobExecutionWhereUniqueInput
+  update: Prisma.XOR<Prisma.JobExecutionUpdateWithoutJobAuditInput, Prisma.JobExecutionUncheckedUpdateWithoutJobAuditInput>
+  create: Prisma.XOR<Prisma.JobExecutionCreateWithoutJobAuditInput, Prisma.JobExecutionUncheckedCreateWithoutJobAuditInput>
+}
+
+export type JobExecutionUpdateWithWhereUniqueWithoutJobAuditInput = {
+  where: Prisma.JobExecutionWhereUniqueInput
+  data: Prisma.XOR<Prisma.JobExecutionUpdateWithoutJobAuditInput, Prisma.JobExecutionUncheckedUpdateWithoutJobAuditInput>
+}
+
+export type JobExecutionUpdateManyWithWhereWithoutJobAuditInput = {
+  where: Prisma.JobExecutionScalarWhereInput
+  data: Prisma.XOR<Prisma.JobExecutionUpdateManyMutationInput, Prisma.JobExecutionUncheckedUpdateManyWithoutJobAuditInput>
+}
+
+export type JobExecutionScalarWhereInput = {
+  AND?: Prisma.JobExecutionScalarWhereInput | Prisma.JobExecutionScalarWhereInput[]
+  OR?: Prisma.JobExecutionScalarWhereInput[]
+  NOT?: Prisma.JobExecutionScalarWhereInput | Prisma.JobExecutionScalarWhereInput[]
+  id?: Prisma.StringFilter<"JobExecution"> | string
+  jobAuditId?: Prisma.StringFilter<"JobExecution"> | string
+  attempt?: Prisma.IntFilter<"JobExecution"> | number
+  status?: Prisma.EnumJobExecutionStatusFilter<"JobExecution"> | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.StringNullableFilter<"JobExecution"> | string | null
+  startedAt?: Prisma.DateTimeFilter<"JobExecution"> | Date | string
+  finishedAt?: Prisma.DateTimeNullableFilter<"JobExecution"> | Date | string | null
+}
+
+export type JobExecutionCreateManyJobAuditInput = {
+  id?: string
+  attempt: number
+  status?: $Enums.JobExecutionStatus
+  errorSanitized?: string | null
+  startedAt?: Date | string
+  finishedAt?: Date | string | null
+}
+
+export type JobExecutionUpdateWithoutJobAuditInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type JobExecutionUncheckedUpdateWithoutJobAuditInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type JobExecutionUncheckedUpdateManyWithoutJobAuditInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempt?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumJobExecutionStatusFieldUpdateOperationsInput | $Enums.JobExecutionStatus
+  errorSanitized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -359,43 +558,67 @@ export type JobExecutionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   jobAuditId?: boolean
   attempt?: boolean
+  status?: boolean
+  errorSanitized?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobExecution"]>
 
 export type JobExecutionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   jobAuditId?: boolean
   attempt?: boolean
+  status?: boolean
+  errorSanitized?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobExecution"]>
 
 export type JobExecutionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   jobAuditId?: boolean
   attempt?: boolean
+  status?: boolean
+  errorSanitized?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobExecution"]>
 
 export type JobExecutionSelectScalar = {
   id?: boolean
   jobAuditId?: boolean
   attempt?: boolean
+  status?: boolean
+  errorSanitized?: boolean
   startedAt?: boolean
   finishedAt?: boolean
 }
 
-export type JobExecutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobAuditId" | "attempt" | "startedAt" | "finishedAt", ExtArgs["result"]["jobExecution"]>
+export type JobExecutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobAuditId" | "attempt" | "status" | "errorSanitized" | "startedAt" | "finishedAt", ExtArgs["result"]["jobExecution"]>
+export type JobExecutionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
+}
+export type JobExecutionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
+}
+export type JobExecutionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  jobAudit?: boolean | Prisma.JobAuditDefaultArgs<ExtArgs>
+}
 
 export type $JobExecutionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "JobExecution"
-  objects: {}
+  objects: {
+    jobAudit: Prisma.$JobAuditPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     jobAuditId: string
     attempt: number
+    status: $Enums.JobExecutionStatus
+    errorSanitized: string | null
     startedAt: Date
     finishedAt: Date | null
   }, ExtArgs["result"]["jobExecution"]>
@@ -792,6 +1015,7 @@ readonly fields: JobExecutionFieldRefs;
  */
 export interface Prisma__JobExecutionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  jobAudit<T extends Prisma.JobAuditDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobAuditDefaultArgs<ExtArgs>>): Prisma.Prisma__JobAuditClient<runtime.Types.Result.GetResult<Prisma.$JobAuditPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -824,6 +1048,8 @@ export interface JobExecutionFieldRefs {
   readonly id: Prisma.FieldRef<"JobExecution", 'String'>
   readonly jobAuditId: Prisma.FieldRef<"JobExecution", 'String'>
   readonly attempt: Prisma.FieldRef<"JobExecution", 'Int'>
+  readonly status: Prisma.FieldRef<"JobExecution", 'JobExecutionStatus'>
+  readonly errorSanitized: Prisma.FieldRef<"JobExecution", 'String'>
   readonly startedAt: Prisma.FieldRef<"JobExecution", 'DateTime'>
   readonly finishedAt: Prisma.FieldRef<"JobExecution", 'DateTime'>
 }
@@ -843,6 +1069,10 @@ export type JobExecutionFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  /**
    * Filter, which JobExecution to fetch.
    */
   where: Prisma.JobExecutionWhereUniqueInput
@@ -861,6 +1091,10 @@ export type JobExecutionFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  /**
    * Filter, which JobExecution to fetch.
    */
   where: Prisma.JobExecutionWhereUniqueInput
@@ -878,6 +1112,10 @@ export type JobExecutionFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the JobExecution
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
   /**
    * Filter, which JobExecution to fetch.
    */
@@ -927,6 +1165,10 @@ export type JobExecutionFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  /**
    * Filter, which JobExecution to fetch.
    */
   where?: Prisma.JobExecutionWhereInput
@@ -975,6 +1217,10 @@ export type JobExecutionFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  /**
    * Filter, which JobExecutions to fetch.
    */
   where?: Prisma.JobExecutionWhereInput
@@ -1018,6 +1264,10 @@ export type JobExecutionCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
+  /**
    * The data needed to create a JobExecution.
    */
   data: Prisma.XOR<Prisma.JobExecutionCreateInput, Prisma.JobExecutionUncheckedCreateInput>
@@ -1051,6 +1301,10 @@ export type JobExecutionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    */
   data: Prisma.JobExecutionCreateManyInput | Prisma.JobExecutionCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1065,6 +1319,10 @@ export type JobExecutionUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the JobExecution
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
   /**
    * The data needed to update a JobExecution.
    */
@@ -1117,6 +1375,10 @@ export type JobExecutionUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many JobExecutions to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1131,6 +1393,10 @@ export type JobExecutionUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the JobExecution
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
   /**
    * The filter to search for the JobExecution to update in case it exists.
    */
@@ -1157,6 +1423,10 @@ export type JobExecutionDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the JobExecution
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
   /**
    * Filter which JobExecution to delete.
    */
@@ -1189,4 +1459,8 @@ export type JobExecutionDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the JobExecution
    */
   omit?: Prisma.JobExecutionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobExecutionInclude<ExtArgs> | null
 }

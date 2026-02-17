@@ -610,6 +610,8 @@ export const JobExecutionScalarFieldEnum = {
   id: 'id',
   jobAuditId: 'jobAuditId',
   attempt: 'attempt',
+  status: 'status',
+  errorSanitized: 'errorSanitized',
   startedAt: 'startedAt',
   finishedAt: 'finishedAt'
 } as const
@@ -730,6 +732,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'JobExecutionStatus'
+ */
+export type EnumJobExecutionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobExecutionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'JobExecutionStatus[]'
+ */
+export type ListEnumJobExecutionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobExecutionStatus[]'>
     
 
 

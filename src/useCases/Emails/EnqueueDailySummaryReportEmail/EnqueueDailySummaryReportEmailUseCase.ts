@@ -1,7 +1,7 @@
-import type { IQueueProvider } from "@/providers/IQueueProvider";
+import type { IQueueProvider } from "@/providers/IQueueProvider.js";
 import type { Prisma } from "@/generated/client.js";
-import type { IJobAuditRepository } from "@/repositories/IJobAuditRepository";
-import type { EnqueueDailySummaryReportEmailDTO } from "./EnqueueDailySummaryReportEmailDTO";
+import type { IJobAuditRepository } from "@/repositories/IJobAuditRepository.js";
+import type { EnqueueDailySummaryReportEmailDTO } from "./EnqueueDailySummaryReportEmailDTO.js";
 
 export class EnqueueDailySummaryReportEmailUseCase {
   constructor(

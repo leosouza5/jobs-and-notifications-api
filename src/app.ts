@@ -1,7 +1,7 @@
 import express from "express";
-import { NodeMailerEmailProvider } from "./providers/implementations/NodeMailerEmailProvider";
-import { errorHandlingMiddleware } from "./middlewares/errorHandlingMiddleware";
-import { router } from "./routes";
+import { NodeMailerEmailProvider } from "./providers/implementations/NodeMailerEmailProvider.js";
+import { errorHandlingMiddleware } from "./middlewares/errorHandlingMiddleware.js";
+import { router } from "./routes/index.js";
 
 const app = express()
 app.use(express.json())

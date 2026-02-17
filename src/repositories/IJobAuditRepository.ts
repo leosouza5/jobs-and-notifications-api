@@ -7,6 +7,7 @@ export interface IJobAuditRepository {
   markFailed(id: string): Promise<JobAudit>;
   markDead(id: string): Promise<JobAudit>;
   incrementAttempts(id: string, attemptNumber?: number): Promise<JobAudit>;
+  listAll(): Promise<JobAudit[]>;
   findById(id: string): Promise<JobAudit | null>;
   findByRequestId(requestId: string): Promise<JobAudit | null>;
   findByBullJobId(jobId: string): Promise<JobAudit | null>;
