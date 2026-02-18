@@ -28,4 +28,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 CMD ["sh","-c","node --trace-warnings --unhandled-rejections=strict dist/src/server.js"]
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/server.js && node dist/src/workers/emails/emailsWorker.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/server.js & node dist/src/workers/emails/emailsWorker.js & wait"]
